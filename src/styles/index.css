@@ -1,0 +1,295 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables for theming */
+:root {
+  /* Light mode */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  --border-color: #e2e8f0;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --toast-bg: #ffffff;
+  --toast-color: #0f172a;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+.dark {
+  /* Dark mode */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #64748b;
+  --border-color: #334155;
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --toast-bg: #1e293b;
+  --toast-color: #f8fafc;
+  --glass-bg: rgba(30, 41, 59, 0.8);
+  --glass-border: rgba(51, 65, 85, 0.5);
+}
+
+/* Base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white dark:bg-dark-900 text-dark-900 dark:text-dark-50;
+    @apply font-sans antialiased;
+    @apply transition-colors duration-300;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-100 dark:bg-dark-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dark-300 dark:bg-dark-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-dark-400 dark:bg-dark-500;
+  }
+
+  /* Number inputs without spinners */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
+/* Component styles */
+@layer components {
+  /* Glass card effect */
+  .glass-card {
+    @apply bg-white/80 dark:bg-dark-800/80;
+    @apply backdrop-blur-xl;
+    @apply border border-white/20 dark:border-dark-700/50;
+    @apply rounded-2xl;
+    @apply shadow-glass dark:shadow-glass-dark;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-birr-green via-birr-yellow to-birr-red;
+    @apply bg-clip-text text-transparent;
+  }
+
+  /* Asset colors */
+  .text-birr { @apply text-birr-green; }
+  .text-btc { @apply text-bitcoin; }
+  .text-eth { @apply text-ethereum; }
+  .text-usdt { @apply text-usdt; }
+  .text-usd { @apply text-usd-light; }
+
+  .bg-birr { @apply bg-birr-green; }
+  .bg-btc { @apply bg-bitcoin; }
+  .bg-eth { @apply bg-ethereum; }
+  .bg-usdt-color { @apply bg-usdt; }
+  .bg-usd { @apply bg-usd-light; }
+
+  .border-birr { @apply border-birr-green; }
+  .border-btc { @apply border-bitcoin; }
+  .border-eth { @apply border-ethereum; }
+  .border-usdt-color { @apply border-usdt; }
+  .border-usd { @apply border-usd-light; }
+
+  /* Shimmer loading effect */
+  .shimmer {
+    @apply relative overflow-hidden;
+    @apply bg-dark-200 dark:bg-dark-700;
+  }
+
+  .shimmer::after {
+    content: '';
+    @apply absolute inset-0;
+    @apply bg-gradient-to-r from-transparent via-white/10 to-transparent;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Metric value animation */
+  .metric-value {
+    @apply font-mono text-2xl md:text-3xl font-semibold;
+    @apply tabular-nums tracking-tight;
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300;
+    @apply hover:shadow-card-hover hover:-translate-y-1;
+  }
+
+  /* Button base */
+  .btn {
+    @apply inline-flex items-center justify-center;
+    @apply px-4 py-2 rounded-xl;
+    @apply font-medium text-sm;
+    @apply transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn;
+    @apply bg-gradient-to-r from-birr-green to-emerald-600;
+    @apply text-white;
+    @apply hover:from-birr-green hover:to-emerald-500;
+    @apply focus:ring-birr-green;
+    @apply shadow-lg hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply btn;
+    @apply bg-dark-100 dark:bg-dark-700;
+    @apply text-dark-700 dark:text-dark-200;
+    @apply hover:bg-dark-200 dark:hover:bg-dark-600;
+    @apply focus:ring-dark-400;
+  }
+
+  .btn-ghost {
+    @apply btn;
+    @apply bg-transparent;
+    @apply text-dark-600 dark:text-dark-300;
+    @apply hover:bg-dark-100 dark:hover:bg-dark-800;
+    @apply focus:ring-dark-400;
+  }
+
+  /* Input styles */
+  .input-field {
+    @apply w-full px-4 py-3;
+    @apply bg-white dark:bg-dark-800;
+    @apply border border-dark-200 dark:border-dark-600;
+    @apply rounded-xl;
+    @apply text-dark-900 dark:text-dark-50;
+    @apply placeholder:text-dark-400 dark:placeholder:text-dark-500;
+    @apply focus:outline-none focus:ring-2 focus:ring-birr-green focus:border-transparent;
+    @apply transition-all duration-200;
+  }
+
+  /* Chart container */
+  .chart-container {
+    @apply relative w-full;
+    @apply bg-white dark:bg-dark-800;
+    @apply rounded-2xl p-4 md:p-6;
+    @apply border border-dark-200 dark:border-dark-700;
+  }
+}
+
+/* Utilities */
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Gradient borders */
+  .gradient-border {
+    @apply relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl p-[1px];
+    @apply bg-gradient-to-r from-birr-green via-birr-yellow to-birr-red;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    @apply bg-white text-black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .chart-container {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .glass-card {
+    @apply bg-white border-gray-300 shadow-none;
+  }
+}
+
+/* React Datepicker custom styles */
+.react-datepicker-popper,
+.datepicker-portal {
+  z-index: 9999 !important;
+}
+
+.react-datepicker {
+  @apply font-sans border-0 rounded-xl shadow-xl;
+  @apply bg-white dark:bg-dark-800;
+}
+
+.react-datepicker__header {
+  @apply bg-dark-50 dark:bg-dark-700 border-b border-dark-200 dark:border-dark-600;
+  @apply rounded-t-xl;
+}
+
+.react-datepicker__current-month {
+  @apply text-dark-900 dark:text-dark-50 font-semibold;
+}
+
+.react-datepicker__day-name {
+  @apply text-dark-500 dark:text-dark-400;
+}
+
+.react-datepicker__day {
+  @apply text-dark-700 dark:text-dark-200;
+  @apply hover:bg-birr-green/20 rounded-lg;
+}
+
+.react-datepicker__day--selected {
+  @apply bg-birr-green text-white hover:bg-birr-green;
+}
+
+.react-datepicker__day--keyboard-selected {
+  @apply bg-birr-green/50;
+}
+
+.react-datepicker__day--disabled {
+  @apply text-dark-300 dark:text-dark-600;
+}
+
+.react-datepicker__navigation-icon::before {
+  @apply border-dark-400 dark:border-dark-500;
+}

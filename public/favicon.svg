@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="ethGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#009639"/>
+      <stop offset="50%" style="stop-color:#FEDD00"/>
+      <stop offset="100%" style="stop-color:#F7931A"/>
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="#0f172a"/>
+  <!-- Birr symbol (simplified) -->
+  <text x="50" y="62" font-family="Arial, sans-serif" font-size="40" font-weight="bold" fill="url(#ethGrad)" text-anchor="middle">₿</text>
+  <!-- Small ETB indicator -->
+  <text x="50" y="85" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">vs ETB</text>
+</svg>
